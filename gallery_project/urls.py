@@ -4,7 +4,7 @@ from django.contrib import admin
 from django.urls import path, include
 from gallery_project.settings import STATIC_ROOT
 
-from gallery.views import landing_page, gallery_upload, index
+from gallery.views import landing_page
 
 urlpatterns = [
     path('admin/', admin.site.urls),
