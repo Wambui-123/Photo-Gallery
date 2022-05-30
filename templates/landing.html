@@ -18,9 +18,9 @@
         {% endif %}
         <hr>
         
+        <section class="text-gray-600 body-font">
         {% for x in img %}
             {% if forloop.first %}<div class="row ">{% endif %}
-              <section class="text-gray-600 body-font">
                 <div class="container px-5 py-24 mx-auto">
                   <div class="gallery flex flex-wrap -m-4">
                     <div class="lg:w-1/4 md:w-1/2 p-4 w-full">
@@ -33,19 +33,20 @@
                         <img alt="ecommerce" class="object-cover object-center w-full h-full block" src="{{x.image.url}}">
                       </a>
                       <div class="mt-4">
-                        <h1 class="text-black-500 text-xs tracking-widest title-font mb-1"><i class="fa fa-solid fa-copy"></i></h1>
+                        <span>
+                          <h1 class="text-black-500 text-xs tracking-widest title-font mb-1">
+                            <i class="fa fa-solid fa-copy"></i>
+                            <i class="fa fas fa-trash"></i>
+                            <i class="fa fas fa-redo"></i>
+                          </h1>
+                        </span>
                         <h2 class="text-gray-900 title-font text-lg font-medium">{{x.caption}}</h2>
-                        <p class="mt-1">$16.00</p>
+                        <p class="mt-1">{{x.location}}</p>
                       </div>
                     </div>
-                
-                  </section> 
-            {% if forloop.counter|divisibleby:3 %}
+                  </div>
                 </div>
-                <div class=row container>{% endif %}
-            {% if forloop.last %}</div>{% endif %}
-        {% endfor %}
-
-</div>
+        </section>
+      {% endfor %}
 
 {% endblock content %}

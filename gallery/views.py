@@ -46,3 +46,39 @@ def gallery_upload(request):
     }
     return render(request, 'gallery/gallery_upload.html', context)
 
+def gallery_create(request):
+    form = ImageModelForm()
+    img=Image.objects.all()
+    if request.method == "POST":
+        print('Recieving Post Request')
+        form = ImageModelForm(request.POST)
+        if form.is_valid():
+            form.save()
+            return render(request,'landing.html',{"img":img,"form":form})
+    context = {
+        "form": form
+    }
+    return render(request, "gallery/gallery_create.html", context)
+
+
+
+def gallery_update(request, pk):
+    gallery = Image.objects.get(id=pk)
+    form = ImageModelForm(instance = gallery)
+    if request.method == "POST":
+        print('Recieving Post Request')
+        form=ImageForm(data=request.POST,files=request.FILES)
+        if form.is_valid():
+            form.save()
+            return redirect('/gallery')
+    context = {
+        "form": form,
+         "gallery": gallery
+    }
+    return render(request, "gallery/gallery_update.html", context)
+
+def gallery_delete(request, pk):
+    gallery = Image.objects.get(id=pk)
+    gallery.delete()
+    return redirect('/gallery')
+
